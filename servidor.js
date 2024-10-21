@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const rutasEstudiantes = require('./Negocio/rutas/estudiantes'); 
+const rutasClases = require('./Negocio/rutas/clases');
 const sequelize = require('./Persistencia/config/bd');
 
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.json());
 
 // Rutas
 app.use('/api/estudiantes', rutasEstudiantes);
+app.use('/api/clases', rutasClases);
 
 // Probar conexión a la base de datos
 sequelize.authenticate()
