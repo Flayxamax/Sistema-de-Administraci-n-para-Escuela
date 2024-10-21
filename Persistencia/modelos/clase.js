@@ -18,9 +18,21 @@ const Clase = sequelize.define('Clase', {
         type: DataTypes.DATEONLY,
         allowNull: false,
     },
+    horaInicio: {
+        type: DataTypes.TIME,
+        allowNull: false,
+    },
     fechaFin: {
         type: DataTypes.DATEONLY,
         allowNull: false,
+    },
+    horaFin: {
+        type: DataTypes.TIME,
+        allowNull: false,
+    },
+    aula: {
+        type: DataTypes.STRING,
+        allowNull: true,
     },
 }, {
     tableName: 'clases',
