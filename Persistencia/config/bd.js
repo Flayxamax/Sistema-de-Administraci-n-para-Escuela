@@ -19,12 +19,10 @@ const probarConexion = async () => {
 // Sincronización de tablas
 const sincronizarTablas = async () => {
     try {
-        await sequelize.sync({ force: true }); // Elimina y crea las tablas nuevamente
+        await sequelize.sync();
         console.log('¡Las tablas se han sincronizado correctamente!');
     } catch (error) {
         console.error('Error al sincronizar las tablas:', error);
-    } finally {
-        await sequelize.close();
     }
 };
 
