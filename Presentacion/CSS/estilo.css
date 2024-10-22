@@ -218,6 +218,62 @@ body {
     padding: 10px;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1rem;
+    background-color: white;
+    border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; 
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #e0e0e0;
+}
+
+th {
+    background-color: #295255; 
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Celdas de la tabla */
+td {
+    color: #333;
+    background-color: #f9f9f9; 
+    transition: background-color 0.3s; 
+}
+
+tr:nth-child(even) td {
+    background-color: #f1f1f1; 
+}
+
+tr:hover td {
+    background-color: #e6f2f2; 
+    cursor: pointer; 
+}
+
+
+td button {
+    background-color: #295255;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px; 
+    cursor: pointer;
+    transition: background-color 0.3s; 
+}
+
+
+td button:hover {
+    background-color: #1c3a3c;
+}
+
 th.checkbox-column, td.checkbox-column {
     width: 30px; 
     text-align: center;

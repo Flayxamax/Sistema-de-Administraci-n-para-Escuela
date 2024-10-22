@@ -134,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <th>Seleccionar</th>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Descripción</th>
             <th>Fecha Inicio</th>
             <th>Hora Inicio</th>
             <th>Fecha Fin</th>
@@ -148,7 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td><input type="checkbox" class="checkbox-clase" value="${clase.id}"></td>
                 <td>${clase.id}</td>
                 <td>${clase.nombre}</td>
-                <td>${clase.descripcion}</td>
                 <td>${clase.fechaInicio}</td>
                 <td>${clase.horaInicio}</td>
                 <td>${clase.fechaFin}</td>

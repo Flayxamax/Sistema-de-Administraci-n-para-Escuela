@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const rutasEstudiantes = require('./Negocio/rutas/estudiantes'); 
 const rutasClases = require('./Negocio/rutas/clases');
+const rutasCalificaciones = require('./Negocio/rutas/calificaciones');
 const sequelize = require('./Persistencia/config/bd');
 
 const app = express();
@@ -14,6 +15,8 @@ app.use(express.json());
 // Rutas
 app.use('/api/estudiantes', rutasEstudiantes);
 app.use('/api/clases', rutasClases);
+app.use('/api/calificaciones', rutasCalificaciones);
+
 
 app.use(bodyParser.json());
 

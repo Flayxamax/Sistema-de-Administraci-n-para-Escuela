@@ -4,20 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Clase - Escuela de Idiomas</title>
+    <title>Asignar alumno a clase - Escuela de Idiomas</title>
     <link rel="stylesheet" href="/Presentacion/CSS/estilo.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
-        <h1>Registrar Clase</h1>
+        <h1>Asignar alumno a clase</h1>
         <nav class="navbar">
             <ul>
                 <li><a href="inicio.html">Inicio</a></li>
                 <li><a href="registro.html">Estudiantes</a></li>
                 <li><a href="registro_clase.html">Clases</a></li>
                 <li><a href="asignar_estudiante_clase.html">Asignar estudiante/clase</a></li>
-                <li><a href="#">Calificaciones</a></li>
+                <li><a href="calificaciones.html">Calificaciones</a></li>
                 <li><a href="#">Pagos</a></li>
                 <li><a href="#">Reportes</a></li>
             </ul>
@@ -31,7 +31,7 @@
                 <div class="form-group">
                     <label for="nombreAlumno">Nombre del alumno:</label>
                     <div class="input-group">
-                        <input type="text" id="nombreAlumno" name="nombreAlumno" required>
+                        <input type="text" id="nombreAlumno" name="nombreAlumno">
                         <button type="button" id="botonBuscarAlumno" class="btn-submit-2">Buscar</button>
                     </div>
                     <table id="tablaAlumnos"></table>
@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label for="nombreClase">Nombre de la clase:</label>
                     <div class="input-group">
-                        <input type="text" id="nombreClase" name="nombreClase" required>
+                        <input type="text" id="nombreClase" name="nombreClase">
                         <button type="button" id="botonBuscarClase" class="btn-submit-2">Buscar</button>
                     </div>
                     <table id="tablaClases"></table>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración - Escuela de Idiomas</title>
+    <link rel="stylesheet" href="/Presentacion/CSS/estilo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <h1>Calificaciones</h1>
+        <nav class="navbar">
+            <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="registro.html">Estudiantes</a></li>
+                <li><a href="registro_clase.html">Clases</a></li>
+                <li><a href="asignar_estudiante_clase.html">Asignar estudiante/clase</a></li>
+                <li><a href="calificaciones.html">Calificaciones</a></li>
+                <li><a href="#">Pagos</a></li>
+                <li><a href="#">Reportes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="content">
+            <!-- Tabla de Clases -->
+            <h2>Clases</h2>
+            <div class="form-group">
+                <table id="tablaClases" border="1">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                            <th>Hora Inicio</th>
+                            <th>Hora Fin</th>
+                            <th>Aula</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clases-list">
+                        <!-- Aquí se insertarán las clases -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tabla de Estudiantes -->
+            <h2>Estudiantes de la Clase</h2>
+            <div class="form-group">
+                <table id="tablaEstudiantes" border="1">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Calificación</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="estudiantes-list">
+                        <!-- Aquí se insertarán los estudiantes de la clase seleccionada -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Escuela de Idiomas. Todos los derechos reservados.</p>
+    </footer>
+</body>
+<script src="../JS/calificaciones.js"></script>
+</html>

@@ -15,12 +15,25 @@ const Calificacion = sequelize.define('Calificacion', {
             max: 10,
         },
     },
-    comentarios: {
-        type: DataTypes.STRING,
+    estudianteId: { 
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'Estudiantes',
+            key: 'id',
+        },
+    },
+    claseId: { 
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'Clases', 
+            key: 'id',
+        },
     },
 }, {
     tableName: 'calificaciones',
-    timestamps: false,
+    timestamps: true, 
 });
 
 module.exports = Calificacion;

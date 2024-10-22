@@ -30,4 +30,18 @@ const buscarEstudiante = async (nombre) => {
     }
 };
 
-module.exports = { registrarEstudiante, buscarEstudiante };
+// Obtener estudiante por ID
+const obtenerEstudiantePorId = async (id) => {
+    try {
+        const estudiante = await Estudiante.findByPk(id);
+        if (!estudiante) {
+            throw new Error('Estudiante no encontrado');
+        }
+        return estudiante;
+    } catch (error) {
+        console.error('Error al obtener estudiante por ID:', error);
+        throw error;
+    }
+};
+
+module.exports = { registrarEstudiante, buscarEstudiante, obtenerEstudiantePorId };

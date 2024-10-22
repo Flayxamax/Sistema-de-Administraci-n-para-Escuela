@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { registrarClase, buscarClase, asignarEstudianteAClase } = require('../clases_ABC');
+const { registrarClase, buscarClase, asignarEstudianteAClase, obtenerClases, obtenerEstudiantesPorClase } = require('../clases_ABC');
 
 // Ruta para registrar una clase
 router.post('/', async (req, res) => {
@@ -30,6 +30,25 @@ router.post('/asignar-alumno-clase', async (req, res) => {
         res.status(201).json(resultado);
     } catch (error) {
         res.status(500).json({ error: 'Error al asignar el alumno a la clase' });
+    }
+});
+
+router.get('/consulta', async (req, res) => {
+    try {
+        const clases = await obtenerClases();
+        res.status(200).json(clases);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener clases' });
+    }
+});
+
+router.get('/:id/estudiantes', async (req, res) => {
+    const idClase = req.params.id;
+    try {
+        const estudiantes = await obtenerEstudiantesPorClase(idClase);
+        res.status(200).json(estudiantes);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener estudiantes de la clase' });
     }
 });
 

@@ -53,4 +53,34 @@ const asignarEstudianteAClase = async (alumnoId, claseId) => {
     }
 };
 
-module.exports = { registrarClase, buscarClase, asignarEstudianteAClase };
+// Obtener todas las clases
+const obtenerClases = async () => {
+    try {
+        const clases = await Clase.findAll();
+        console.log('Clases encontradas:', clases);
+        return clases;
+    } catch (error) {
+        console.error('Error al obtener clases:', error);
+        throw error;
+    }
+};
+
+const obtenerEstudiantesPorClase = async (idClase) => {
+    try {
+        const estudiantes = await EstudianteClase.findAll({
+            where: { claseId: idClase }
+        });
+        
+        if (!estudiantes.length) {
+            return { error: 'No hay estudiantes para esta clase' };
+        }
+
+        return estudiantes; 
+    } catch (error) {
+        console.error('Error al obtener estudiantes por clase:', error);
+        throw error;
+    }
+};
+
+
+module.exports = { registrarClase, buscarClase, asignarEstudianteAClase, obtenerClases, obtenerEstudiantesPorClase };
