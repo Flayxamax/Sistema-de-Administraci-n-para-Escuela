@@ -27,6 +27,12 @@ router.post('/asignar-alumno-clase', async (req, res) => {
     const { alumnoId, claseId } = req.body;
     try {
         const resultado = await asignarEstudianteAClase(alumnoId, claseId);
+
+        // Verificar si hubo un error de asignación
+        if (resultado.error) {
+            return res.status(400).json({ error: resultado.error });
+        }
+
         res.status(201).json(resultado);
     } catch (error) {
         res.status(500).json({ error: 'Error al asignar el alumno a la clase' });

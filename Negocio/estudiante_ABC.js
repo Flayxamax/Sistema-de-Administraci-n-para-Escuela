@@ -14,13 +14,28 @@ const registrarEstudiante = async (datos) => {
 };
 
 // Buscar estudiantes por nombre
-const buscarEstudiante = async (nombre) => {
+const buscarEstudiante = async (busqueda) => {
     try {
         const estudiantes = await Estudiante.findAll({
             where: {
-                nombre: {
-                    [Op.like]: `%${nombre}%`
-                }
+                [Op.or]: [
+                    {
+                        nombre: {
+                            [Op.like]: `%${busqueda}%`
+                        }
+                    },
+                    {
+                        apellido: {
+                            [Op.like]: `%${busqueda}%`
+                        }
+                    },
+                    {
+                        [Op.and]: [
+                            { nombre: { [Op.like]: `%${busqueda.split(' ')[0]}%` } },
+                            { apellido: { [Op.like]: `%${busqueda.split(' ')[1] || ''}%` } }
+                        ]
+                    }
+                ]
             }
         });
         return estudiantes;

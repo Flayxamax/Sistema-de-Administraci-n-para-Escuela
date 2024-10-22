@@ -102,8 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function generarTablaAlumnos(alumnos) {
         const tabla = document.getElementById('tablaAlumnos');
         tabla.innerHTML = '';
-
-        // Crear cabecera de tabla
+    
         const encabezado = `<tr>
             <th>Seleccionar</th>
             <th>ID</th>
@@ -112,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <th>Correo</th>
         </tr>`;
         tabla.innerHTML = encabezado;
-
+    
         alumnos.forEach(alumno => {
             const fila = `<tr>
                 <td><input type="checkbox" class="checkbox-alumno" value="${alumno.id}"></td>
@@ -123,13 +122,23 @@ document.addEventListener('DOMContentLoaded', () => {
             </tr>`;
             tabla.innerHTML += fila;
         });
+
+        const checkboxesAlumnos = document.querySelectorAll('.checkbox-alumno');
+        checkboxesAlumnos.forEach(checkbox => {
+            checkbox.addEventListener('click', () => {
+                checkboxesAlumnos.forEach(cb => {
+                    if (cb !== checkbox) {
+                        cb.checked = false;
+                    }
+                });
+            });
+        });
     }
 
-    // Función para generar tabla de clases con checkbox
     function generarTablaClases(clases) {
         const tabla = document.getElementById('tablaClases');
         tabla.innerHTML = '';
-
+    
         const encabezado = `<tr>
             <th>Seleccionar</th>
             <th>ID</th>
@@ -141,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <th>Aula</th>
         </tr>`;
         tabla.innerHTML = encabezado;
-
+    
         clases.forEach(clase => {
             const fila = `<tr>
                 <td><input type="checkbox" class="checkbox-clase" value="${clase.id}"></td>
@@ -155,6 +164,17 @@ document.addEventListener('DOMContentLoaded', () => {
             </tr>`;
             tabla.innerHTML += fila;
         });
+
+        const checkboxesClases = document.querySelectorAll('.checkbox-clase');
+        checkboxesClases.forEach(checkbox => {
+            checkbox.addEventListener('click', () => {
+                checkboxesClases.forEach(cb => {
+                    if (cb !== checkbox) {
+                        cb.checked = false;
+                    }
+                });
+            });
+        });
     }
 
     // Función para manejar el registro de alumno a clase
@@ -162,33 +182,33 @@ document.addEventListener('DOMContentLoaded', () => {
     if (formAsignarAlumnoClase) {
         formAsignarAlumnoClase.addEventListener('submit', async (e) => {
             e.preventDefault();
-
+    
             const alumnoSeleccionado = document.querySelector('.checkbox-alumno:checked');
             const claseSeleccionada = document.querySelector('.checkbox-clase:checked');
-
+    
             if (!alumnoSeleccionado || !claseSeleccionada) {
                 alert('Debes seleccionar un alumno y una clase.');
                 return;
             }
-
+    
             const alumnoId = alumnoSeleccionado.value;
-            console.log(alumnoId)
             const claseId = claseSeleccionada.value;
-
+    
             const datos = { alumnoId, claseId };
-
+    
             try {
                 const response = await fetch('http://localhost:3000/api/clases/asignar-alumno-clase', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(datos),
                 });
-
+    
                 if (response.ok) {
                     alert('Alumno asignado a la clase con éxito');
                     formAsignarAlumnoClase.reset();
                 } else {
-                    alert('Hubo un error al asignar el alumno a la clase');
+                    const errorData = await response.json();
+                    alert(errorData.error);
                 }
             } catch (error) {
                 console.error('Error al registrar alumno en clase:', error);

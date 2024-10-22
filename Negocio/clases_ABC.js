@@ -35,8 +35,6 @@ const buscarClase = async (nombre) => {
 // Asignar un Estudiante a una clase
 const asignarEstudianteAClase = async (alumnoId, claseId) => {
     try {
-        console.log('Estudiante IDAAAAAAA:', alumnoId);
-        console.log('Clase IDAAAAAAAAAA:', claseId); 
         const estudiante = await Estudiante.findByPk(alumnoId);
         const clase = await Clase.findByPk(claseId);
         
@@ -44,8 +42,15 @@ const asignarEstudianteAClase = async (alumnoId, claseId) => {
             throw new Error('El Estudiante o la clase no existen');
         }
 
+        const existeAsignacion = await EstudianteClase.findOne({
+            where: { estudianteId: alumnoId, claseId: claseId }
+        });
+
+        if (existeAsignacion) {
+            return { error: 'Error: El alumno ya está inscrito en esta clase' };
+        }
+
         const asignacion = await EstudianteClase.create({ estudianteId: alumnoId, claseId });
-        console.log('Estudiante asignado a clase:', asignacion);
         return asignacion;
     } catch (error) {
         console.error('Error al asignar el Estudiante a la clase:', error);
