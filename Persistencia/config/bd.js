@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
 // Configuración de conexión a la base de datos
-const sequelize = new Sequelize('escuela_idiomas', 'root', 'Movagro123.,', {
+const sequelize = new Sequelize('escuela_idiomas', 'root', 'itson', {
     host: 'localhost',
     dialect: 'mysql',
 });

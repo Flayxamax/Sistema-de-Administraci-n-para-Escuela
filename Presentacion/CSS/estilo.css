@@ -13,7 +13,6 @@ body {
     min-height: 100vh;
 }
 
-
 .header {
     background-color: #295255;
     color: white;
@@ -37,12 +36,10 @@ body {
     font-weight: 500;
 }
 
-
 .container {
     display: flex;
     flex: 1;
 }
-
 
 .sidebar {
     width: 250px;
@@ -66,7 +63,6 @@ body {
     display: block;
 }
 
-
 .content {
     flex: 1;
     padding: 20px;
@@ -75,7 +71,6 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 
 #formularioRegistro {
     margin-top: 20px;
@@ -92,30 +87,37 @@ body {
     max-width: 400px;
     margin: 0 auto;
 }
+
 .form-group {
     display: flex;
     flex-direction: column;
 }
+
 .form-group label {
     margin-bottom: 5px;
     font-weight: bold;
+    color: #295255;
 }
-.formulario-estudiante input {
+
+.form-group input,
+.form-group button {
+    margin-top: 10px;
     padding: 10px;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-.formulario-estudiante button {
-    padding: 10px 20px;
+
+.form-group button {
     background-color: #295255;
     color: white;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
+    transition: background-color 0.3s;
 }
-.formulario-estudiante button:hover {
+
+.form-group button:hover {
     background-color: #1c3a3c;
 }
 
@@ -131,24 +133,14 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #295255;
-}
-
 .form-clase input, 
 .form-clase textarea {
     padding: 10px;
+    width: 380px;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 4px;
-    resize: none; 
+    resize: none;
 }
 
 .form-clase textarea {
@@ -170,6 +162,47 @@ body {
     background-color: #1c3a3c;
 }
 
+.form-clase-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-clase-2 input, 
+.form-clase-2 textarea {
+    padding: 10px;
+    width: 880px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+
+.form-clase-2 textarea {
+    min-height: 100px;
+}
+
+.form-clase-2 button {
+    padding: 12px;
+    background-color: #295255;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.form-clase-2 button:hover {
+    background-color: #1c3a3c;
+}
+
 .h2 {
     text-align: center;
 }
@@ -183,4 +216,17 @@ body {
     color: white;
     text-align: center;
     padding: 10px;
+}
+
+th.checkbox-column, td.checkbox-column {
+    width: 30px; 
+    text-align: center;
+    padding: 0;
+}
+
+input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    padding: 0;
 }

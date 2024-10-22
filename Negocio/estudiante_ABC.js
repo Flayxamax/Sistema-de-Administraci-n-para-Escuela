@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const Estudiante = require('../Persistencia/modelos/estudiante');
 
 // Registrar un nuevo estudiante
@@ -11,4 +12,22 @@ const registrarEstudiante = async (datos) => {
         throw error;
     }
 };
-module.exports = { registrarEstudiante };
+
+// Buscar estudiantes por nombre
+const buscarEstudiante = async (nombre) => {
+    try {
+        const estudiantes = await Estudiante.findAll({
+            where: {
+                nombre: {
+                    [Op.like]: `%${nombre}%`
+                }
+            }
+        });
+        return estudiantes;
+    } catch (error) {
+        console.error('Error al buscar estudiantes:', error);
+        throw error;
+    }
+};
+
+module.exports = { registrarEstudiante, buscarEstudiante };
