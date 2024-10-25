@@ -1,5 +1,5 @@
 const { registrarEstudiante, buscarEstudiante, obtenerEstudiantePorId } = require('../Negocio/estudiante_ABC'); 
-const Estudiante = require('../Persistencia/modelos/estudiante'); 
+const Estudiante = require('../Persistencia/Modelos/estudiante'); 
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize('escuela_idiomas', 'root', '1234', {

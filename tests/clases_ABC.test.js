@@ -1,7 +1,7 @@
 const { registrarClase, buscarClase, asignarEstudianteAClase, obtenerClases, obtenerEstudiantesPorClase } = require('../Negocio/clases_ABC'); 
-const Clase = require('../Persistencia/modelos/clase');
-const Estudiante = require('../Persistencia/modelos/estudiante'); 
-const EstudianteClase = require('../Persistencia/modelos/estudianteClase');
+const Clase = require('../Persistencia/Modelos/clase');
+const Estudiante = require('../Persistencia/Modelos/estudiante'); 
+const EstudianteClase = require('../Persistencia/Modelos/estudianteClase');
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize('escuela_idiomas', 'root', '1234', {
@@ -29,7 +29,7 @@ describe('Pruebas unitarias Clases_ABC', () => {
     });
 
     test('Registrar una nueva clase', async () => {
-        const datos = { nombre: 'Matemáticas' };
+        const datos = { nombre: 'Ingles' };
         Clase.create.mockResolvedValue(datos); 
 
         const resultado = await registrarClase(datos);
@@ -39,8 +39,8 @@ describe('Pruebas unitarias Clases_ABC', () => {
     });
 
     test('Buscar clases por nombre', async () => {
-        const nombre = 'Matemáticas';
-        const clasesMock = [{ nombre: 'Matemáticas' }];
+        const nombre = 'Ingles';
+        const clasesMock = [{ nombre: 'Ingles' }];
         Clase.findAll.mockResolvedValue(clasesMock); 
 
         const resultado = await buscarClase(nombre);
@@ -53,7 +53,7 @@ describe('Pruebas unitarias Clases_ABC', () => {
         const alumnoId = 1;
         const claseId = 1;
         const estudianteMock = { id: alumnoId, nombre: 'Juan' };
-        const claseMock = { id: claseId, nombre: 'Matemáticas' };
+        const claseMock = { id: claseId, nombre: 'Ingles' };
         const asignacionMock = { estudianteId: alumnoId, claseId: claseId };
 
         Estudiante.findByPk.mockResolvedValue(estudianteMock);
@@ -80,7 +80,7 @@ describe('Pruebas unitarias Clases_ABC', () => {
     });
 
     test('Obtener todas las clases', async () => {
-        const clasesMock = [{ nombre: 'Matemáticas' }, { nombre: 'Historia' }];
+        const clasesMock = [{ nombre: 'Ingles' }, { nombre: 'Portugues' }];
         Clase.findAll.mockResolvedValue(clasesMock); 
 
         const resultado = await obtenerClases();
