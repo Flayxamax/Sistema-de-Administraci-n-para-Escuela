@@ -9,9 +9,9 @@ const sequelize = new Sequelize('escuela_idiomas', 'root', '1234', {
     dialect: 'mysql',
 });
 
-jest.mock('../Persistencia/modelos/clase');
-jest.mock('../Persistencia/modelos/estudiante');
-jest.mock('../Persistencia/modelos/estudianteClase');
+jest.mock('../Persistencia/Modelos/clase');
+jest.mock('../Persistencia/Modelos/estudiante');
+jest.mock('../Persistencia/Modelos/estudianteClase');
 
 beforeAll(() => {
     console.log = jest.fn();
