@@ -1,7 +1,7 @@
 const { Op } = require('sequelize');
-const Clase = require('../Persistencia/modelos/clase');
-const Estudiante = require('../Persistencia/modelos/estudiante');
-const EstudianteClase = require('../Persistencia/modelos/estudianteClase');
+const Clase = require('../Persistencia/Modelos/clase');
+const Estudiante = require('../Persistencia/Modelos/estudiante');
+const EstudianteClase = require('../Persistencia/Modelos/estudianteClase');
 
 // Registrar una nueva clase
 const registrarClase = async (datos) => {

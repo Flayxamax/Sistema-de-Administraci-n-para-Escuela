@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const Estudiante = require('../Persistencia/modelos/estudiante');
+const Estudiante = require('../Persistencia/Modelos/estudiante');
 
 // Registrar un nuevo estudiante
 const registrarEstudiante = async (datos) => {
