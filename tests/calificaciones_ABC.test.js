@@ -1,5 +1,5 @@
 const { actualizarCalificacion } = require('../Negocio/calificaciones_ABC'); 
-const Calificacion = require('../Persistencia/modelos/calificaciones'); 
+const Calificacion = require('../Persistencia/Modelos/calificaciones'); 
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize('escuela_idiomas', 'root', '1234', {
@@ -7,7 +7,7 @@ const sequelize = new Sequelize('escuela_idiomas', 'root', '1234', {
     dialect: 'mysql',
 });
 
-jest.mock('../Persistencia/modelos/calificaciones'); 
+jest.mock('../Persistencia/Modelos/calificaciones'); 
 
 beforeAll(() => {
     console.log = jest.fn(); 

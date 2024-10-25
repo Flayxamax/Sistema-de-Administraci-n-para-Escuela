@@ -1,10 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const rutasEstudiantes = require('./Negocio/rutas/estudiantes'); 
-const rutasClases = require('./Negocio/rutas/clases');
-const rutasCalificaciones = require('./Negocio/rutas/calificaciones');
-const sequelize = require('./Persistencia/config/bd');
+const rutasEstudiantes = require('./Negocio/Rutas/estudiantes'); 
+const rutasClases = require('./Negocio/Rutas/clases');
+const rutasCalificaciones = require('./Negocio/Rutas/calificaciones');
+const sequelize = require('./Persistencia/Config/bd');
 
 const app = express();
 const PORT = 3000;

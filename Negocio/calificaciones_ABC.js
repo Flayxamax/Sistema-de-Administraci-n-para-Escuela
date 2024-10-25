@@ -1,4 +1,4 @@
-const Calificacion = require('../Persistencia/modelos/calificaciones');
+const Calificacion = require('../Persistencia/Modelos/calificaciones');
 
 const actualizarCalificacion = async (estudianteId, claseId, calificacion) => {
     try {
