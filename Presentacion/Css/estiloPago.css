@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #295255;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #162623;
+    padding: 20px;
+    color: white;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 400;
+    display: block;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: white;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    display: flex;
+    flex-direction: column; 
+    padding: 20px; 
+    background-color: #fff; 
+    border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto; 
+    max-width: 600px;
+}
+
+h1 {
+    text-align: center;
+    color: white; 
+    margin-bottom: 20px;
+}
+
+.container h1{
+    color:#295255
+}
+
+.form-group {
+    margin-bottom: 15px; 
+}
+
+.form-group label {
+    font-weight: bold; 
+    color: #295255; 
+}
+
+.form-group input {
+    padding: 12px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    width: 100%; 
+}
+
+button {
+    background-color: #295255; 
+    color: white; 
+    padding: 12px;
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 1rem; 
+    transition: background-color 0.3s; 
+    width: 100%; 
+}
+
+button:hover {
+    background-color: #1c3a3c; 
+}
+
+table {
+    margin-top: 20px; 
+    width: 100%; 
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px; 
+    text-align: left;
+    border: 1px solid #e0e0e0; 
+}
+
+th {
+    background-color: #295255; 
+    color: white; 
+    font-weight: bold; 
+}
+
+tr:nth-child(even) {
+    background-color: #f1f1f1; 
+}
+
+tr:hover {
+    background-color: #e6f2f2; 
+}
+
+.footer {
+    background-color: #295255;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
