@@ -65,6 +65,58 @@ const paymentTable = document.getElementById('paymentTable');
         paymentTable.appendChild(row);
     }
 
+const studentNameInput = document.getElementById('studentName');
+const suggestionsContainer = document.createElement('div'); 
+suggestionsContainer.setAttribute('id', 'suggestions');
+studentNameInput.parentNode.appendChild(suggestionsContainer);
+
+// Función para buscar estudiantes mientras se escribe
+async function buscarEstudiantes(query) {
+    if (query.length < 2) {
+        limpiarSugerencias();
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/estudiantes/buscar?nombre=${query}`);
+        const estudiantes = await response.json();
+
+        if (response.ok) {
+            mostrarSugerencias(estudiantes);
+        } else {
+            console.error('Error al buscar estudiantes:', estudiantes.message);
+        }
+    } catch (error) {
+        console.error('Error en la búsqueda:', error);
+    }
+}
+
+// Función para mostrar las sugerencias
+function mostrarSugerencias(estudiantes) {
+    limpiarSugerencias();
+    estudiantes.forEach(estudiante => {
+        const suggestion = document.createElement('div');
+        suggestion.classList.add('suggestion');
+        suggestion.textContent = `${estudiante.nombre} ${estudiante.apellido}`;
+        suggestion.onclick = () => seleccionarEstudiante(`${estudiante.nombre} ${estudiante.apellido}`);
+        suggestionsContainer.appendChild(suggestion);
+    });
+}
+
+
+function seleccionarEstudiante(nombreCompleto) {
+    studentNameInput.value = nombreCompleto;
+    limpiarSugerencias();
+}
+
+function limpiarSugerencias() {
+    suggestionsContainer.innerHTML = '';
+}
+
+studentNameInput.addEventListener('input', (e) => {
+    buscarEstudiantes(e.target.value);
+});
+
 // Llamar a la función listarPagos al cargar la página
 window.onload = listarPagos;
       

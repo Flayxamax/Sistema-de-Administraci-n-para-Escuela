@@ -13,37 +13,23 @@ const registrarEstudiante = async (datos) => {
     }
 };
 
-// Buscar estudiantes por nombre
-const buscarEstudiante = async (busqueda) => {
+// Función para buscar estudiantes por coincidencia de nombre
+async function buscarEstudiantes(nombre) {
     try {
         const estudiantes = await Estudiante.findAll({
             where: {
-                [Op.or]: [
-                    {
-                        nombre: {
-                            [Op.like]: `%${busqueda}%`
-                        }
-                    },
-                    {
-                        apellido: {
-                            [Op.like]: `%${busqueda}%`
-                        }
-                    },
-                    {
-                        [Op.and]: [
-                            { nombre: { [Op.like]: `%${busqueda.split(' ')[0]}%` } },
-                            { apellido: { [Op.like]: `%${busqueda.split(' ')[1] || ''}%` } }
-                        ]
-                    }
+                [Op.or]: [  
+                    { nombre: { [Op.like]: `%${nombre}%` } },
+                    { apellido: { [Op.like]: `%${nombre}%` } }
                 ]
-            }
+            },
+            attributes: ['nombre', 'apellido'],
         });
         return estudiantes;
     } catch (error) {
-        console.error('Error al buscar estudiantes:', error);
-        throw error;
+        throw new Error('Error al buscar estudiantes: ' + error.message);
     }
-};
+}
 
 // Obtener estudiante por ID
 const obtenerEstudiantePorId = async (id) => {
@@ -59,4 +45,4 @@ const obtenerEstudiantePorId = async (id) => {
     }
 };
 
-module.exports = { registrarEstudiante, buscarEstudiante, obtenerEstudiantePorId };
+module.exports = { registrarEstudiante, buscarEstudiantes, obtenerEstudiantePorId };

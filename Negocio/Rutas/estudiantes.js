@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { registrarEstudiante } = require('../estudiante_ABC');
-const { buscarEstudiante } = require('../estudiante_ABC');
+const { buscarEstudiantes } = require('../estudiante_ABC');
 const { obtenerEstudiantePorId } = require('../estudiante_ABC');
 
 // Ruta para registrar un estudiante
@@ -14,10 +14,10 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.post('/buscar', async (req, res) => {
-    const { nombre } = req.body;
+router.get('/buscar', async (req, res) => {
+    const { nombre } = req.query;
     try {
-        const estudiantes = await buscarEstudiante(nombre);
+        const estudiantes = await buscarEstudiantes(nombre);
         res.json(estudiantes);
     } catch (error) {
         res.status(500).json({ error: 'Error al buscar estudiantes' });
