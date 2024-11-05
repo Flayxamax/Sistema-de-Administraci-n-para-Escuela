@@ -132,33 +132,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
+        const headerFooterColor = [41, 82, 85];
+        const textColor = [255, 255, 255];
+        const margin = 15;
 
-        // Título del reporte
-        doc.setFontSize(30);
-        doc.text("Reporte de Calificaciones", doc.internal.pageSize.width / 2, 20, { align: "center" });
+        // Encabezado
+        doc.setFillColor(...headerFooterColor);
+        doc.rect(margin, 10, doc.internal.pageSize.width - 2 * margin, 20, "F");
+
+        // Título
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(25);
+        doc.setTextColor(...textColor);
+        doc.text("Reporte de calificaciones", doc.internal.pageSize.width / 2, 25, { align: "center" });
+
+        doc.setTextColor(0, 0, 0);
 
         // Información del estudiante
         doc.setFontSize(12);
         doc.setFont("helvetica", "bold");
-        doc.text(`Nombre:`, 20, 40);
+        doc.text(`Nombre:`, margin, 50);
         doc.setFont("helvetica", "normal");
-        doc.text(estudianteNombre, 50, 40);
+        doc.text(estudianteNombre, margin + 30, 50);
 
         doc.setFont("helvetica", "bold");
-        doc.text(`Clase:`, 20, 50);
+        doc.text(`Clase:`, margin, 60);
         doc.setFont("helvetica", "normal");
-        doc.text(claseNombre, 50, 50);
+        doc.text(claseNombre, margin + 30, 60);
 
         // Tabla de calificaciones
         doc.setFont("helvetica", "bold");
-        doc.text("Calificaciones:", 20, 70);
+        doc.text("Calificaciones:", margin, 80);
         doc.autoTable({
-            startY: 80,
+            startY: 90,
             head: [['Parcial 1', 'Parcial 2', 'Parcial 3', 'Calificación final']],
             body: [[calificaciones.parcial1, calificaciones.parcial2, calificaciones.parcial3, promedio]],
+            margin: { left: margin, right: margin },
             headStyles: {
-                fillColor: [41, 82, 85],
-                textColor: [255, 255, 255] 
+                fillColor: headerFooterColor,
+                textColor: textColor
             },
             bodyStyles: {
                 fillColor: [245, 245, 245],
@@ -166,6 +178,21 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
+        // Pie de página
+        const fechaActual = new Date().toLocaleDateString();
+        doc.setFontSize(10);
+        const pageCount = doc.internal.getNumberOfPages();
+        for (let i = 1; i <= pageCount; i++) {
+            doc.setPage(i);
+            doc.setFillColor(...headerFooterColor);
+            doc.rect(margin, doc.internal.pageSize.height - 20, doc.internal.pageSize.width - 2 * margin, 10, "F");
+
+            doc.setTextColor(...textColor);
+            doc.text(`Fecha: ${fechaActual}`, margin + 5, doc.internal.pageSize.height - 13);
+            doc.text(`Página ${i} de ${pageCount}`, doc.internal.pageSize.width - margin - 30, doc.internal.pageSize.height - 13);
+        }
+
+        // Descargar el PDF
         doc.save(`ReporteCalificacion_${estudianteNombre.replace(/ /g, "_")}_${claseNombre.replace(/ /g, "_")}.pdf`);
     }
 
