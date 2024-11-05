@@ -62,13 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const nombre = document.getElementById('nombreAlumno').value;
 
         try {
-            const response = await fetch('http://localhost:3000/api/estudiantes/buscar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ nombre }),
-            });
+            const response = await fetch(`http://localhost:3000/api/estudiantes/buscar?nombre=${nombre}`);
 
             const alumnos = await response.json();
 

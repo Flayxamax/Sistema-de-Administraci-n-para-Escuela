@@ -23,7 +23,7 @@ async function buscarEstudiantes(nombre) {
                     { apellido: { [Op.like]: `%${nombre}%` } }
                 ]
             },
-            attributes: ['nombre', 'apellido'],
+            attributes: ['id', 'nombre', 'apellido', 'correo'],
         });
         return estudiantes;
     } catch (error) {
