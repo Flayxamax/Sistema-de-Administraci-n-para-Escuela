@@ -7,9 +7,25 @@ const Calificacion = sequelize.define('Calificacion', {
         primaryKey: true,
         autoIncrement: true,
     },
-    calificacion: {
-        type: DataTypes.FLOAT,
+    parcial1: {
+        type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+            min: 0,
+            max: 10,
+        },
+    },
+    parcial2: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        validate: {
+            min: 0,
+            max: 10,
+        },
+    },
+    parcial3: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
         validate: {
             min: 0,
             max: 10,
