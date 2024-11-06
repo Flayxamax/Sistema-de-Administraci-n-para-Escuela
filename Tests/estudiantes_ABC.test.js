@@ -1,28 +1,25 @@
-const { registrarEstudiante, buscarEstudiante, obtenerEstudiantePorId } = require('../Negocio/estudiante_ABC'); 
-const Estudiante = require('../Persistencia/Modelos/estudiante'); 
+const { registrarEstudiante, buscarEstudiantes, obtenerEstudiantePorId } = require('../Negocio/estudiante_ABC');
+const { actualizarEstudiante } = require('../Negocio/estudiante_ABC');
+const Estudiante = require('../Persistencia/Modelos/estudiante');
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('escuela_idiomas', 'root', '1234', {
-    host: 'localhost',
-    dialect: 'mysql',
-});
-
-jest.mock('../Persistencia/Modelos/estudiante'); 
+jest.mock('../Persistencia/Modelos/estudiante');
 
 beforeAll(() => {
     console.log = jest.fn();
-    console.error = jest.fn(); 
+    console.error = jest.fn();
 });
 
 afterAll(async () => {
-    await new Promise(resolve => setTimeout(resolve, 100)); 
-    await sequelize.close();
+    await new Promise(resolve => setTimeout(resolve, 100));
 });
 
-describe('Pruebas unitarias Estudiantes_ABC', () => {
+describe('Pruebas unitarias para Estudiantes_ABC', () => {
     afterEach(() => {
-        jest.clearAllMocks(); 
+        jest.clearAllMocks();
     });
+
+    
 
     test('Registrar un nuevo estudiante', async () => {
         const datos = { nombre: 'Juan', apellido: 'Pérez' };
@@ -39,7 +36,7 @@ describe('Pruebas unitarias Estudiantes_ABC', () => {
         const estudiantesMock = [{ nombre: 'Juan', apellido: 'Pérez' }];
         Estudiante.findAll.mockResolvedValue(estudiantesMock); 
 
-        const resultado = await buscarEstudiante(busqueda);
+        const resultado = await buscarEstudiantes(busqueda);
 
         expect(Estudiante.findAll).toHaveBeenCalled(); 
         expect(resultado).toEqual(estudiantesMock);
@@ -63,5 +60,6 @@ describe('Pruebas unitarias Estudiantes_ABC', () => {
         await expect(obtenerEstudiantePorId(id)).rejects.toThrow('Estudiante no encontrado');
     });
 });
+
 
 
