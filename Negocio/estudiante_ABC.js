@@ -45,4 +45,27 @@ const obtenerEstudiantePorId = async (id) => {
     }
 };
 
-module.exports = { registrarEstudiante, buscarEstudiantes, obtenerEstudiantePorId };
+//Editar un Estudiante
+const editarEstudiante = async (id, datosActualizados) =>{
+   try{
+        const estudiante = await Estudiante.findByPk(id);
+
+        if (!estudiante) {
+            throw new Error('Estudiante no encontrado');
+        } 
+
+        // Actualizar los valores del estudiante
+        Object.assign(estudiante, datosActualizados);
+
+        // Guardar los cambios en la base de datos
+        await estudiante.save();
+
+        console.log('Estudiante actualizado:', estudiante);
+        return estudiante;   
+   }catch (error){
+        console.error('Error al actualizar la informacion del Estudiante:', error);
+        throw error;
+   }
+}
+
+module.exports = { registrarEstudiante, buscarEstudiantes, obtenerEstudiantePorId, editarEstudiante };

@@ -222,4 +222,90 @@ document.addEventListener('DOMContentLoaded', () => {
     if (botonBuscarClase) {
         botonBuscarClase.addEventListener('click', buscarClase);
     }
+
+    // Función para editar estudiante
+    async function editarEstudiante(estudianteId, datosActualizados) {
+        try {
+            const response = await fetch(`http://localhost:3000/api/estudiantes/editar/${estudianteId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(datosActualizados),
+            });
+
+            if (response.ok) {
+                const resultado = await response.json();
+                alert('Estudiante actualizado con éxito');
+                console.log('Estudiante actualizado:', resultado);
+            } else {
+                alert('Hubo un error al actualizar el estudiante');
+                console.error('Error al actualizar el estudiante');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error de conexión al servidor');
+        }
+    }
+
+    // Manejo del formulario de edición de estudiante
+    const formEditarEstudiante = document.getElementById('editarEstudiante');
+    if (formEditarEstudiante) {
+        formEditarEstudiante.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const estudianteId = document.getElementById('idEstudianteEditar').value; // Campo oculto o prellenado
+            const datos = Object.fromEntries(new FormData(formEditarEstudiante));
+
+            if (!estudianteId) {
+                alert('No se encontró el ID del estudiante para editar.');
+                return;
+            }
+
+            await editarEstudiante(estudianteId, datos);
+            formEditarEstudiante.reset();
+        });
+    }
 });
+
+function mostrarSeccion(id) {
+    // Ocultar todas las secciones
+    const secciones = document.querySelectorAll('.seccion');
+    secciones.forEach(seccion => {
+        seccion.style.display = 'none';
+    });
+
+    // Mostrar solo la sección seleccionada
+    const seccionSeleccionada = document.getElementById(id);
+    if (seccionSeleccionada) {
+        seccionSeleccionada.style.display = 'block';
+    }
+}
+
+// Función para precargar datos de estudiante en el formulario de edición
+async function precargarDatosEstudiante() {
+
+    // Obtener el valor del campo de entrada
+    const idEstudiante = document.getElementById("idEstudianteEditar").value;
+
+    // Verificar si el campo no está vacío
+    if (idEstudiante.trim() === "") {
+        alert("Por favor, ingresa un ID o nombre.");
+        return;
+    }
+    try {
+        const response = await fetch(`http://localhost:3000/api/estudiantes/${idEstudiante}`);
+        if (response.ok) {
+            const estudiante = await response.json();
+            document.getElementById('idEstudianteEditar').value = estudiante.id;
+            document.getElementById('nombreEditar').value = estudiante.nombre;
+            document.getElementById('apellidoEditar').value = estudiante.apellido;
+            document.getElementById('correoEditar').value = estudiante.correo;
+        } else {
+            alert('No se pudo cargar la información del estudiante.');
+        }
+    } catch (error) {
+        console.error('Error al precargar datos del estudiante:', error);
+    }
+}
+
+// Exponer la función al ámbito global
+window.mostrarSeccion = mostrarSeccion;
+window.precargarDatosEstudiante = precargarDatosEstudiante;
