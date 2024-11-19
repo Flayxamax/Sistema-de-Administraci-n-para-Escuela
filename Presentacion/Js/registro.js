@@ -263,6 +263,39 @@ document.addEventListener('DOMContentLoaded', () => {
             formEditarEstudiante.reset();
         });
     }
+
+    const eliminarForm = document.getElementById('eliminarEstudiante');
+    
+    if (eliminarForm) {
+        eliminarForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const idEstudiante = document.getElementById('idEstudianteEliminar').value;
+
+            if (!idEstudiante) {
+                alert('Por favor, ingresa el ID del estudiante que deseas eliminar.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/estudiantes/eliminar/${idEstudiante}`, {
+                    method: 'DELETE',
+                });
+
+                if (response.ok) {
+                    alert('Estudiante eliminado con éxito.');
+                    eliminarForm.reset();
+                } else if (response.status === 404) {
+                    alert('Estudiante no encontrado.');
+                } else {
+                    alert('Hubo un error al intentar eliminar al estudiante.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error de conexión al servidor.');
+            }
+        });
+    }
 });
 
 function mostrarSeccion(id) {

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { registrarEstudiante, buscarEstudiantes, obtenerEstudiantePorId, editarEstudiante } = require('../estudiante_ABC');
+const { registrarEstudiante, buscarEstudiantes, obtenerEstudiantePorId, editarEstudiante , eliminarEstudiante} = require('../estudiante_ABC');
 
 // Ruta para registrar un estudiante
 router.post('/', async (req, res) => {
@@ -47,6 +47,20 @@ router.put('/editar/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ 
             message: 'Error al actualizar el estudiante', 
+            error: error.message 
+        });
+    }
+});
+
+// Ruta para eliminar un estudiante
+router.delete('/eliminar/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const resultado = await eliminarEstudiante(id);
+        res.status(200).json(resultado);
+    } catch (error) {
+        res.status(500).json({ 
+            message: 'Error al eliminar el estudiante', 
             error: error.message 
         });
     }

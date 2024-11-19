@@ -68,4 +68,23 @@ const editarEstudiante = async (id, datosActualizados) =>{
    }
 }
 
-module.exports = { registrarEstudiante, buscarEstudiantes, obtenerEstudiantePorId, editarEstudiante };
+//Eliminar un Estudiante
+const eliminarEstudiante = async (id) => {
+    try {
+        const estudiante = await Estudiante.findByPk(id);
+
+        if (!estudiante) {
+            throw new Error('Estudiante no encontrado');
+        }
+
+        // Eliminar el estudiante
+        await estudiante.destroy();
+        console.log('Estudiante eliminado:', estudiante);
+        return { message: 'Estudiante eliminado con éxito' };
+    } catch (error) {
+        console.error('Error al eliminar estudiante:', error);
+        throw error;
+    }
+};
+
+module.exports = { registrarEstudiante, buscarEstudiantes, obtenerEstudiantePorId, editarEstudiante, eliminarEstudiante };
