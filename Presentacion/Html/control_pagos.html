@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Pagos de Estudiantes - Escuela de Idiomas</title>
+  <link rel="icon" type="image/png" href="../Logo/logo.png">
+  <link rel="stylesheet" href="../Css/estiloPago.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <h1>Registrar Pagos de Mensualidades</h1>
+        <nav class="navbar">
+            <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="registro.html">Estudiantes</a></li>
+                <li><a href="registro_clase.html">Clases</a></li>
+                <li><a href="asignar_estudiante_clase.html">Asignar estudiante a clase</a></li>
+                <li><a href="calificaciones.html">Calificaciones</a></li>
+                <li><a href="control_pagos.html">Pagos</a></li>
+                <li><a href="reporte_calificaciones.html">Reportes</a></li>
+            </ul>
+        </nav>
+    </header>  
+  <div class="container">
+    <h1>Gestión de Pagos de Estudiantes</h1>
+    <div class="form-group" style="position: relative;">
+      <label for="studentName">Nombre del Estudiante</label>
+      <input type="text" id="studentName" placeholder="Ingrese el nombre del estudiante">
+    </div>    
+    <div class="form-group">
+      <label for="month">Mes</label>
+      <input type="month" id="month" name="Mes" required>
+    </div>
+    <div class="form-group">
+      <label for="amount">Monto</label>
+      <input type="number" min="0" id="amount" placeholder="Ingrese el monto">
+    </div>
+    <button onclick="addPayment()">Registrar Pago</button>
+    <table>
+      <thead>
+        <tr>
+          <th>Estudiante</th>
+          <th>Mes</th>
+          <th>Monto</th>
+        </tr>
+      </thead>
+      <tbody id="paymentTable">
+      </tbody>
+    </table>
+  </div>
+   <footer class="footer">
+     <p>&copy; 2024 Escuela de Idiomas. Todos los derechos reservados.</p>
+    </footer>
+  <script src="../JS/pagos.js"></script>  
+</body>
+</html>  

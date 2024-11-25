@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const rutasEstudiantes = require('./Negocio/Rutas/estudiantes'); 
 const rutasClases = require('./Negocio/Rutas/clases');
 const rutasCalificaciones = require('./Negocio/Rutas/calificaciones');
+const rutasPagos = require('./Negocio/Rutas/pagos');
 const sequelize = require('./Persistencia/Config/bd');
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use('/api/estudiantes', rutasEstudiantes);
 app.use('/api/clases', rutasClases);
 app.use('/api/calificaciones', rutasCalificaciones);
+app.use('/api/pagos', rutasPagos);
 
 
 app.use(bodyParser.json());

@@ -13,37 +13,23 @@ const registrarEstudiante = async (datos) => {
     }
 };
 
-// Buscar estudiantes por nombre
-const buscarEstudiante = async (busqueda) => {
+// Función para buscar estudiantes por coincidencia de nombre
+async function buscarEstudiantes(nombre) {
     try {
         const estudiantes = await Estudiante.findAll({
             where: {
-                [Op.or]: [
-                    {
-                        nombre: {
-                            [Op.like]: `%${busqueda}%`
-                        }
-                    },
-                    {
-                        apellido: {
-                            [Op.like]: `%${busqueda}%`
-                        }
-                    },
-                    {
-                        [Op.and]: [
-                            { nombre: { [Op.like]: `%${busqueda.split(' ')[0]}%` } },
-                            { apellido: { [Op.like]: `%${busqueda.split(' ')[1] || ''}%` } }
-                        ]
-                    }
+                [Op.or]: [  
+                    { nombre: { [Op.like]: `%${nombre}%` } },
+                    { apellido: { [Op.like]: `%${nombre}%` } }
                 ]
-            }
+            },
+            attributes: ['id', 'nombre', 'apellido', 'correo'],
         });
         return estudiantes;
     } catch (error) {
-        console.error('Error al buscar estudiantes:', error);
-        throw error;
+        throw new Error('Error al buscar estudiantes: ' + error.message);
     }
-};
+}
 
 // Obtener estudiante por ID
 const obtenerEstudiantePorId = async (id) => {
@@ -59,4 +45,46 @@ const obtenerEstudiantePorId = async (id) => {
     }
 };
 
-module.exports = { registrarEstudiante, buscarEstudiante, obtenerEstudiantePorId };
+//Editar un Estudiante
+const editarEstudiante = async (id, datosActualizados) =>{
+   try{
+        const estudiante = await Estudiante.findByPk(id);
+
+        if (!estudiante) {
+            throw new Error('Estudiante no encontrado');
+        } 
+
+        // Actualizar los valores del estudiante
+        Object.assign(estudiante, datosActualizados);
+
+        // Guardar los cambios en la base de datos
+        await estudiante.save();
+
+        console.log('Estudiante actualizado:', estudiante);
+        return estudiante;   
+   }catch (error){
+        console.error('Error al actualizar la informacion del Estudiante:', error);
+        throw error;
+   }
+}
+
+//Eliminar un Estudiante
+const eliminarEstudiante = async (id) => {
+    try {
+        const estudiante = await Estudiante.findByPk(id);
+
+        if (!estudiante) {
+            throw new Error('Estudiante no encontrado');
+        }
+
+        // Eliminar el estudiante
+        await estudiante.destroy();
+        console.log('Estudiante eliminado:', estudiante);
+        return { message: 'Estudiante eliminado con éxito' };
+    } catch (error) {
+        console.error('Error al eliminar estudiante:', error);
+        throw error;
+    }
+};
+
+module.exports = { registrarEstudiante, buscarEstudiantes, obtenerEstudiantePorId, editarEstudiante, eliminarEstudiante };

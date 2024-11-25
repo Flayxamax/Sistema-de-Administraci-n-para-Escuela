@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración - Escuela de Idiomas</title>
+    <link rel="icon" type="image/png" href="../Logo/logo.png">
+    <link rel="stylesheet" href="../Css/estilo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <h1>Registrar Estudiante</h1>
+        <nav class="navbar">
+            <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="#" onclick="mostrarFormulario()">Estudiantes</a></li>
+                <li><a href="registro_clase.html">Clases</a></li>
+                <li><a href="asignar_estudiante_clase.html">Asignar estudiante a clase</a></li>
+                <li><a href="calificaciones.html">Calificaciones</a></li>
+                <li><a href="control_pagos.html">Pagos</a></li>
+                <li><a href="reporte_calificaciones.html">Reportes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <div id="submenu-estudiantes">
+            <button onclick="mostrarSeccion('registrar')">Registrar Estudiante</button>
+            <button onclick="mostrarSeccion('editar')">Editar Estudiante</button>
+            <button onclick="mostrarSeccion('eliminar')">Eliminar Estudiante</button>
+        </div>
+
+        <main class="content">
+            
+            <div id="registrar" class="seccion" style="display: block;">
+                <h2 class="h2">Registrar Estudiante</h2>
+                <form id="registroEstudiante" class="formulario-estudiante">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="correo">Correo electrónico:</label>
+                        <input type="email" id="correo" name="correo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha_inscripcion">Fecha de inscripción:</label>
+                        <input type="date" id="fecha_inscripcion" name="fecha_inscripcion" required>
+                    </div>
+                    <button type="submit" class="btn-submit-2">Registrar Estudiante</button>
+                </form>
+            </div>
+
+            <div id="editar" class="seccion" style="display: none;">
+                <!-- Herramienta para editar estudiante -->
+                <h2 class="h2">Editar Estudiante</h2>
+                <form id="editarEstudiante" class="formulario-estudiante">
+                   <div class="form-group">
+                     <input type="text" id="idEstudianteEditar" placeholder="Buscar estudiante por ID o nombre" />
+                     <button type="button" onclick="precargarDatosEstudiante()" id="botonBuscarAlumno" class="btn-submit-2">Buscar</button>
+                   </div> 
+                  <!-- Campos que se llenan con los datos encontrados -->
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombreEditar" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellidoEditar" name="apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="correo">Correo electrónico:</label>
+                        <input type="email" id="correoEditar" name="correo" required>
+                    </div>
+                    <button type="submit">Actualizar Datos</button>
+                </form>
+            </div>
+
+            <div id="eliminar" class="seccion" style="display: none;">
+                <!-- Herramienta para eliminar estudiante -->
+                <h2 class="h2">Eliminar Estudiante</h2>
+                <div class="form-group">
+                    <form id="eliminarEstudiante" class="formulario-estudiante">
+                     <input type="text" id="idEstudianteEliminar" placeholder="Buscar estudiante por ID o nombre" />
+                     <button type="submit">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Escuela de Idiomas. Todos los derechos reservados.</p>
+    </footer>
+</body>
+<script src="../JS/registro.js"></script>
+</html>
+  
