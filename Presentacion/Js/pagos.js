@@ -70,6 +70,22 @@ const suggestionsContainer = document.createElement('div');
 suggestionsContainer.setAttribute('id', 'suggestions');
 studentNameInput.parentNode.appendChild(suggestionsContainer);
 
+
+function validarInput(input) {
+    const errorSpan = document.getElementById(`error-${input.id}`);
+    if (!input.validity.valid) {
+        errorSpan.textContent = input.title;
+        errorSpan.style.color = 'red';
+    } else {
+        errorSpan.textContent = '';
+    }
+}
+
+// Asociar validación dinámica
+document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('input', () => validarInput(input));
+});
+
 // Función para buscar estudiantes mientras se escribe
 async function buscarEstudiantes(query) {
     if (query.length < 2) {

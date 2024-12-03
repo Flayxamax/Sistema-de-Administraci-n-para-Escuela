@@ -23,32 +23,69 @@
             </ul>
         </nav>
     </header>  
-  <div class="container">
-    <h1>Gestión de Pagos de Estudiantes</h1>
-    <div class="form-group" style="position: relative;">
-      <label for="studentName">Nombre del Estudiante</label>
-      <input type="text" id="studentName" placeholder="Ingrese el nombre del estudiante">
-    </div>    
-    <div class="form-group">
-      <label for="month">Mes</label>
-      <input type="month" id="month" name="Mes" required>
-    </div>
-    <div class="form-group">
-      <label for="amount">Monto</label>
-      <input type="number" min="0" id="amount" placeholder="Ingrese el monto">
-    </div>
-    <button onclick="addPayment()">Registrar Pago</button>
-    <table>
-      <thead>
-        <tr>
-          <th>Estudiante</th>
-          <th>Mes</th>
-          <th>Monto</th>
-        </tr>
-      </thead>
-      <tbody id="paymentTable">
-      </tbody>
-    </table>
+    <div class="container">
+      <h1>Gestión de Pagos de Estudiantes</h1>
+      
+      <!-- Campo: Nombre del Estudiante -->
+      <div class="form-group" style="position: relative;">
+          <label for="studentName">Nombre del Estudiante</label>
+          <input 
+              type="text" 
+              id="studentName" 
+              name="studentName" 
+              required 
+              pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,50}$" 
+              title="El nombre debe tener entre 3 y 50 caracteres, solo letras y espacios." 
+              oninput="validarInput(this)" 
+              placeholder="Ingrese el nombre del estudiante"
+          >
+          <span class="error-message" id="error-studentName"></span>
+      </div>    
+  
+      <!-- Campo: Mes -->
+      <div class="form-group">
+          <label for="month">Mes</label>
+          <input 
+              type="month" 
+              id="month" 
+              name="Mes" 
+              required 
+              title="Seleccione un mes válido."
+              oninput="validarInput(this)"
+          >
+          <span class="error-message" id="error-month"></span>
+      </div>
+  
+      <!-- Campo: Monto -->
+      <div class="form-group">
+          <label for="amount">Monto</label>
+          <input 
+              type="number" 
+              min="1" 
+              id="amount" 
+              name="amount" 
+              placeholder="Ingrese el monto" 
+              required 
+              pattern="^[0-9]+(\.[0-9]{1,2})?$" 
+              title="Ingrese un monto válido (números enteros o con hasta 2 decimales)." 
+              oninput="validarInput(this)"
+          >
+          <span class="error-message" id="error-amount"></span>
+      </div>
+  
+      <button onclick="addPayment()">Registrar Pago</button>
+  
+      <!-- Tabla de Pagos -->
+      <table>
+          <thead>
+              <tr>
+                  <th>Estudiante</th>
+                  <th>Mes</th>
+                  <th>Monto</th>
+              </tr>
+          </thead>
+          <tbody id="paymentTable"></tbody>
+      </table>
   </div>
    <footer class="footer">
      <p>&copy; 2024 Escuela de Idiomas. Todos los derechos reservados.</p>

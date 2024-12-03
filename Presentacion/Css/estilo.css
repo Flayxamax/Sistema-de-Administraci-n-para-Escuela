@@ -320,6 +320,14 @@ input[type="checkbox"] {
     text-align: left;
 }
 
+.error-message {
+    font-size: 0.9rem;
+    color: red;
+    margin-top: 5px;
+    display: block;
+}
+
+
 #submenu-estudiantes button:hover {
     background-color: #1c3a3c;
     transform: translateX(5px);

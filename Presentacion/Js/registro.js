@@ -298,6 +298,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+function validarInput(input) {
+    const errorSpan = document.getElementById(`error-${input.id}`);
+    if (!input.validity.valid) {
+        errorSpan.textContent = input.title;
+        errorSpan.style.color = 'red';
+    } else {
+        errorSpan.textContent = '';
+    }
+}
+
+// Asociar la función a todos los inputs con validaciones
+document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('input', () => validarInput(input));
+});
+
 function mostrarSeccion(id) {
     // Ocultar todas las secciones
     const secciones = document.querySelectorAll('.seccion');

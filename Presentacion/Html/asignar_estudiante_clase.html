@@ -32,21 +32,39 @@
                 <div class="form-group">
                     <label for="nombreAlumno">Nombre del alumno:</label>
                     <div class="input-group">
-                        <input type="text" id="nombreAlumno" name="nombreAlumno">
+                        <input 
+                            type="text" 
+                            id="nombreAlumno" 
+                            name="nombreAlumno" 
+                            required 
+                            pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,50}$" 
+                            title="El nombre debe tener entre 3 y 50 caracteres, solo letras y espacios." 
+                            oninput="validarInput(this)"
+                        >
                         <button type="button" id="botonBuscarAlumno" class="btn-submit-2">Buscar</button>
                     </div>
+                    <span class="error-message" id="error-nombreAlumno"></span>
                     <table id="tablaAlumnos"></table>
                 </div>
-
+            
                 <div class="form-group">
                     <label for="nombreClase">Nombre de la clase:</label>
                     <div class="input-group">
-                        <input type="text" id="nombreClase" name="nombreClase">
+                        <input 
+                            type="text" 
+                            id="nombreClase" 
+                            name="nombreClase" 
+                            required 
+                            pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s\d]{3,50}$" 
+                            title="El nombre de la clase debe tener entre 3 y 50 caracteres, solo letras, números y espacios." 
+                            oninput="validarInput(this)"
+                        >
                         <button type="button" id="botonBuscarClase" class="btn-submit-2">Buscar</button>
                     </div>
+                    <span class="error-message" id="error-nombreClase"></span>
                     <table id="tablaClases"></table>
                 </div>
-
+            
                 <button type="submit" id="botonAsignarClase" class="btn-submit-2">Registrar alumno a clase</button>
             </form>
         </main>
