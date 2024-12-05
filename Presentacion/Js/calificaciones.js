@@ -168,9 +168,19 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => {
             if (response.ok) {
-                alert('Calificaciones guardadas con éxito');
+                Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'Calificaciones guardadas con éxito',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                });
             } else {
-                alert('Error al guardar las calificaciones');
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Error al guardar las calificaciones',
+                    icon: 'error',
+                    confirmButtonText: 'Intentar de nuevo'
+                });
             }
         })
         .catch(error => console.error('Error al guardar las calificaciones:', error));

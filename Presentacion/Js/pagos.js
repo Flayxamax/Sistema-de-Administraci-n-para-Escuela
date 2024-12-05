@@ -44,10 +44,21 @@ const paymentTable = document.getElementById('paymentTable');
       
               const result = await response.json();
               if (response.ok) {
-                  alert('Pago registrado exitosamente');
                   agregarFilaATabla(result.pago);
+                  Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'Pago registrado exitosamente',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                });
               } else {
                   alert(`Error: ${result.message}`);
+                  Swal.fire({
+                    title: 'Error',
+                    text: 'Hubo un error al registrar el pago',
+                    icon: 'error',
+                    confirmButtonText: 'Intentar de nuevo'
+                });
               }
           } catch (error) {
               console.error('Error registrando pago:', error);

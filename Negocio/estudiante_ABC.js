@@ -1,5 +1,8 @@
 const { Op } = require('sequelize');
 const Estudiante = require('../Persistencia/Modelos/estudiante');
+const Calificacion = require('../Persistencia/Modelos/calificaciones');
+const EstudianteClase = require('../Persistencia/Modelos/estudianteClase'); 
+const EstudiantesClases = require('../Persistencia/Modelos/estudianteClase');
 
 // Registrar un nuevo estudiante
 const registrarEstudiante = async (datos) => {
@@ -76,6 +79,12 @@ const eliminarEstudiante = async (id) => {
         if (!estudiante) {
             throw new Error('Estudiante no encontrado');
         }
+
+        // Eliminar asociaciones en la tabla estudiantes_clases
+        await EstudianteClase.destroy({ where: { estudianteId: id } });
+
+        // Eliminar las calificaciones asociadas
+        await Calificacion.destroy({ where: { estudianteId: id } });
 
         // Eliminar el estudiante
         await estudiante.destroy();

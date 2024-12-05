@@ -15,11 +15,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     const resultado = await response.json();
                     console.log('Estudiante registrado:', resultado);
-                    alert('Estudiante registrado con éxito');
+                    Swal.fire({
+                        title: '¡Éxito!',
+                        text: 'Estudiante registrado con éxito',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    });
                     formEstudiante.reset();
                 } else {
                     console.error('Error al registrar estudiante');
-                    alert('Hubo un error al registrar el estudiante');
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Hubo un problema al registrar el estudiante',
+                        icon: 'error',
+                        confirmButtonText: 'Intentar de nuevo'
+                    });
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -42,13 +52,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    const resultado = await response.json();
-                    console.log('Clase registrada:', resultado);
-                    alert('Clase registrada con éxito');
+                    Swal.fire({
+                        title: '¡Éxito!',
+                        text: 'clase registrada con éxito',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    });
                     formClase.reset();
                 } else {
-                    console.error('Error al registrar la Clase');
-                    alert('Hubo un error al registrar la Clase');
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Hubo un error al registrar la clase',
+                        icon: 'error',
+                        confirmButtonText: 'Intentar de nuevo'
+                    });
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -198,11 +215,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
     
                 if (response.ok) {
-                    alert('Alumno asignado a la clase con éxito');
+                    Swal.fire({
+                        title: '¡Éxito!',
+                        text: 'Alumno asignado a la clase con éxito',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    });
                     formAsignarAlumnoClase.reset();
                 } else {
                     const errorData = await response.json();
-                    alert(errorData.error);
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Hubo un error al asignar el estudiante a la clase',
+                        icon: 'error',
+                        confirmButtonText: 'Intentar de nuevo'
+                    });
                 }
             } catch (error) {
                 console.error('Error al registrar alumno en clase:', error);
@@ -234,11 +261,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 const resultado = await response.json();
-                alert('Estudiante actualizado con éxito');
+                Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'Estudiante actualizado con éxito',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                });
                 console.log('Estudiante actualizado:', resultado);
             } else {
-                alert('Hubo un error al actualizar el estudiante');
-                console.error('Error al actualizar el estudiante');
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Hubo un error al actualizar el estudiante',
+                    icon: 'error',
+                    confirmButtonText: 'Intentar de nuevo'
+                });
             }
         } catch (error) {
             console.error('Error:', error);
@@ -276,19 +312,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Por favor, ingresa el ID del estudiante que deseas eliminar.');
                 return;
             }
-
+            
             try {
                 const response = await fetch(`http://localhost:3000/api/estudiantes/eliminar/${idEstudiante}`, {
                     method: 'DELETE',
                 });
 
                 if (response.ok) {
-                    alert('Estudiante eliminado con éxito.');
+                    Swal.fire({
+                        title: '¡Éxito!',
+                        text: 'Estudiante eliminado con éxito',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    });
                     eliminarForm.reset();
                 } else if (response.status === 404) {
                     alert('Estudiante no encontrado.');
                 } else {
-                    alert('Hubo un error al intentar eliminar al estudiante.');
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Hubo un error al intentar eliminar al estudiante',
+                        icon: 'error',
+                        confirmButtonText: 'Intentar de nuevo'
+                    });
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -347,7 +393,12 @@ async function precargarDatosEstudiante() {
             document.getElementById('apellidoEditar').value = estudiante.apellido;
             document.getElementById('correoEditar').value = estudiante.correo;
         } else {
-            alert('No se pudo cargar la información del estudiante.');
+            Swal.fire({
+                title: 'Error',
+                text: 'No se pudo cargar la información del estudiante.',
+                icon: 'error',
+                confirmButtonText: 'Intentar de nuevo'
+            });
         }
     } catch (error) {
         console.error('Error al precargar datos del estudiante:', error);
